@@ -17,7 +17,7 @@ CREATE TABLE KhachHang (Ma CHAR(8) PRIMARY KEY, --example: hd000000 -> hd999999
 CREATE TABLE HoaDon (Ma CHAR(8) PRIMARY KEY, --example: hd000000 -> hd999999
 	MaKH CHAR(8) NOT NULL,
 	NgayLap DATE DEFAULT GETDATE(),
-	TongTien INT NOT NULL CONSTRAINT CHK_HoaDon_TongTien CHECK (TongTien >= 0),
+	TongTien INT DEFAULT 0 CONSTRAINT CHK_HoaDon_TongTien CHECK (TongTien >= 0),
 	CONSTRAINT FK_HoaDon_MaKH FOREIGN KEY (MaKH) REFERENCES KhachHang(Ma));
 
 --Tạo bảng sản phẩm
@@ -31,9 +31,9 @@ CREATE TABLE SanPham (Ma CHAR(7) PRIMARY KEY, --example: sp00000 -> sp99999
 CREATE TABLE HoaDonChiTiet (MaHD CHAR(8) NOT NULL,
 	MaSP CHAR(7) NOT NULL,
 	SoLuong INT NOT NULL CONSTRAINT CHK_HoaDonChiTiet_SoLuong CHECK (SoLuong > 0),
-	GiaBan INT NOT NULL CONSTRAINT CHK_HoaDonChiTiet_GiaBan CHECK (GiaBan >= 0),
+	GiaBan INT CONSTRAINT CHK_HoaDonChiTiet_GiaBan CHECK (GiaBan >= 0),
 	GiaGiam INT DEFAULT 0 CONSTRAINT CHK_HoaDonChiTiet_GiaGiam CHECK (GiaGiam >= 0),
-	ThanhTien INT NOT NULL CONSTRAINT CHK_HoaDonChiTiet_ThanhTien CHECK (ThanhTien >= 0),
+	ThanhTien INT CONSTRAINT CHK_HoaDonChiTiet_ThanhTien CHECK (ThanhTien >= 0),
 	PRIMARY KEY (MaHD, MaSP),
 	CONSTRAINT FK_HoaDonChiTiet_MaHD FOREIGN KEY (MaHD) REFERENCES HoaDon(Ma),
 	CONSTRAINT FK_HoaDonChiTiet_MaSP FOREIGN KEY (MaSP) REFERENCES SanPham(Ma));

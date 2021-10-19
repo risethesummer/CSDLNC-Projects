@@ -5,8 +5,15 @@ AS
 BEGIN
 	INSERT INTO HoaDonChiTiet(MaHD, MaSP, SoLuong, GiaBan, GiaGiam, ThanhTien)
 	SELECT MaHD, MaSP, SoLuong, SP.Gia, GiaGiam, (SP.Gia - GiaGiam) * SoLuong
-	From INSERTED INNER JOIN SanPham SP
-		ON INSERTED.MaSP = SP.Ma
+	From inserted INNER JOIN SanPham SP
+		ON inserted.MaSP = SP.Ma
+	
+	UPDATE HoaDon
+	SET TongTien = (SELECT SUM(HDCT.ThanhTien)
+					FROM HoaDonChiTiet HDCT
+					WHERE Ma = HDCT.MaHD)
+	WHERE Ma = (SELECT TOP 1 i.MaHD
+				FROM inserted i)
 END
 
 CREATE TRIGGER TRG_HDCT_GiaBan_GiaGiam_AfterInsertUpdate
