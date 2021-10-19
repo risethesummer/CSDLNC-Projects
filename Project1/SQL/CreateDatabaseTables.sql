@@ -4,7 +4,7 @@ USE cua_hang;
 --Tạo bảng khách hàng
 CREATE TABLE KhachHang (Ma CHAR(8) PRIMARY KEY, --example: hd000000 -> hd999999
 	Ho NVARCHAR(10) NOT NULL,
-	Ten NVARCHAR(30) NOT NULL,
+	Ten NVARCHAR(10) NOT NULL,
 	NgaySinh DATE,
 	SoNha INT CONSTRAINT CHK_KhachHang_SoNha CHECK (SoNha >= 0),
 	Duong NVARCHAR(50),
@@ -22,10 +22,10 @@ CREATE TABLE HoaDon (Ma CHAR(8) PRIMARY KEY, --example: hd000000 -> hd999999
 
 --Tạo bảng sản phẩm
 CREATE TABLE SanPham (Ma CHAR(7) PRIMARY KEY, --example: sp00000 -> sp99999
-	Ten NVARCHAR(50) NOT NULL,
+	Ten NVARCHAR(50) NOT NULL UNIQUE,
 	SoLuongTon INT DEFAULT 0 CONSTRAINT CHK_SanPham_SoLuongTon CHECK (SoLuongTon >= 0),
-	MoTa NVARCHAR(100),
-	Gia INT CONSTRAINT CHK_SanPham_Gia CHECK (Gia >= 0));
+	MoTa NVARCHAR(100) DEFAULT '',
+	Gia INT NOT NULL CONSTRAINT CHK_SanPham_Gia CHECK (Gia >= 0));
 
 --Tạo bảng chi tiết hóa đơn
 CREATE TABLE HoaDonChiTiet (MaHD CHAR(8) NOT NULL,
