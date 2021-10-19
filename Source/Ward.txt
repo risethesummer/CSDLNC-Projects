@@ -1,0 +1,350 @@
+phường 1
+phường 2
+phường 3
+phường 4
+phường 5
+phường 6
+phường 7
+phường 8
+phường 9
+phường 10
+phường 11
+phường 12
+phường 13
+phường 14
+phường 15
+phường 16
+phường 17
+phường Bình Đức
+phường Đông Xuyên
+phường Bình Khánh
+phường Mỹ Bình
+phường Mỹ Hòa
+phường Mỹ Long
+phường Mỹ Phước
+phường Mỹ Quý
+phường Mỹ Thạnh
+phường Mỹ Thới
+phường Mỹ Xuyên
+phường Châu Phú A
+phường Châu Phú B
+phường Núi Sam
+phường Vĩnh Mỹ
+phường Vĩnh Nguơn
+phường Kim Dinh
+phường Long Hương
+phường Long Tâm
+phường Long Toàn
+phường Phước Hiệp
+phường Phước Hưng
+phường Phước Nguyên
+phường Nguyễn An Ninh
+phường Phước Trung
+phường Rạch Dừa
+phường Thắng Nhất
+phường Thắng Nhì
+phường Thắng Tam
+phường Đa Mai
+phường Hoàng Văn Thụ
+phường Dĩnh Kế
+phường Lê Lợi
+phường Mỹ Độ
+phường Ngô Quyền
+phường Thọ Xương
+phường Trần Nguyên Hãn
+phường Trần Phú
+phường Xương Giang
+phường Đức Xuân
+phường Huyền Tụng
+phường Nguyễn Thị Minh Khai
+phường Phùng Chí Kiên
+phường Xuất Hóa
+phường Sông Cầu
+phường Nhà Mát
+phường Đáp Cầu
+phường Hạp Lĩnh
+phường Hòa Long
+phường Khắc Niệm
+phường Khúc Xuyên
+phường Kim Chân
+phường Kinh Bắc
+phường Nam Sơn
+phường Ninh Xá
+phường Phong Khê
+phường Suối Hoa
+phường Thị Cầu
+phường Vạn An
+phường Tiền An
+phường Vân Dương
+phường Vệ An
+phường Võ Cường
+phường Vũ Ninh
+phường Châu Khê
+phường Đình Bảng
+phường Đông Ngàn
+phường Đồng Kỵ
+phường Đồng Nguyên
+phường Hương Mạc
+phường Phù Chẩn
+phường Phù Khê
+phường Tam Sơn
+phường Tân Hồng
+phường Trang Hạ
+phường Tương Giang
+phường An Hội
+phường Phú Khương
+phường Phú Tân
+phường Bùi Thị Xuân
+phường Đống Đa
+phường Ghềnh Ráng
+phường Hải Cảng
+phường Lê Hồng Phong
+phường Lê Lợi
+phường Lý Thường Kiệt
+phường Ngô Mây
+phường Nguyễn Văn Cừ
+phường Nhơn Bình
+phường Nhơn Phú
+phường Quang Trung
+phường Thị Nại
+phường Trần Hưng Đạo
+phường Trần Phú
+phường Trần Quang Diệu
+phường Chánh Nghĩa
+phường Chánh Mỹ
+phường Định Hòa
+phường Hiệp An
+phường Hiệp Thành
+phường Hòa Phú
+phường Phú Cường
+phường Phú Hòa
+phường Phú Lợi
+phường Phú Mỹ
+phường Phú Tân
+phường Phú Thọ
+phường Tân An
+phường Tương Bình Hiệp
+phường An Bình
+phường Bình An
+phường Bình Thắng
+phường Dĩ An
+phường Đông Hòa
+phường Tân Bình
+phường Tân Đông Hiệp
+phường An Phú
+phường An Thạnh
+phường Bình Chuẩn
+phường Bình Hòa
+phường Bình Nhâm
+phường Hưng Định
+phường Lái Thiêu
+phường Thuận Giao
+phường Vĩnh Phú
+phường Tân Đồng
+phường Tân Phú
+phường Tân Thiện
+phường Tân Xuân
+phường Tiến Thành
+phường Bình Hưng
+phường Đức Long
+phường Đức Nghĩa
+phường Đức Thắng
+phường Hàm Tiến
+phường Hưng Long
+phường Lạc Đạo
+phường Mũi Né
+phường Phú Hài
+phường Phú Tài
+phường Phú Trinh
+phường Thanh Hải
+phường Xuân An
+phường Tân Thành
+phường Tân Xuyên
+phường Đề Thám
+phường Duyệt Trung
+phường Hòa Chung
+phường Hợp Giang
+phường Ngọc Xuân
+phường Sông Bằng
+phường Sông Hiến
+phường Tân Giang
+phường Khánh Xuân
+phường Tân An
+phường Tân Hòa
+phường Tân Lập
+phường Tân Lợi
+phường Tân Thành
+phường Tân Tiến
+phường Thắng Lợi
+phường Thành Công
+phường Thành Nhất
+phường Thống Nhất
+phường Tự An
+phường Nghĩa Đức
+phường Nghĩa Phú
+phường Nghĩa Tân
+phường Nghĩa Thành
+phường Nghĩa Trung
+phường Quảng Thành
+phường Him Lam
+phường Mường Thanh
+phường Nam Thanh
+phường Noong Bua
+phường Tân Thanh
+phường Thanh Bình
+phường Thanh Trường
+phường An Bình
+phường An Hòa
+phường Bình Đa
+phường Bửu Hòa
+phường Bửu Long
+phường Hiệp Hòa
+phường Hóa An
+phường Hố Nai
+phường Hòa Bình
+phường Long Bình
+phường Long Bình Tân
+phường Phước Tân
+phường Quang Vinh
+phường Quyết Thắng
+phường Tam Phước
+phường Tân Biên
+phường Tân Hạnh
+phường Tân Hiệp
+phường Tân Hòa
+phường Tân Mai
+phường Tân Phong
+phường Tân Tiến
+phường Tân Vạn
+phường Thanh Bình
+phường Thống Nhất
+phường Trảng Dài
+phường Trung Dũng
+phường Bảo Vinh
+phường Bàu Sen
+phường Phú Bình
+phường Suối Tre
+phường Xuân An
+phường Xuân Bình
+phường Xuân Hòa
+phường Xuân Lập
+phường Xuân Tân
+phường Xuân Thanh
+phường Xuân Trung
+phường Hòa Thuận
+phường Mỹ Phú
+phường An Bình A
+phường An Bình B
+phường An Lạc
+phường An Lộc
+phường An Thạnh
+phường An Hòa
+phường Tân Quy Đông
+phường Chi Lăng
+phường Diên Hồng
+phường Đống Đa
+phường Hội Phú
+phường Hoa Lư
+phường Hội Thương
+phường Phù Đổng
+phường Tây Sơn
+phường Thắng Lợi
+phường Trà Bá
+phường Yên Đỗ
+phường Yên Thế
+phường Minh Khai
+phường Ngọc Hà
+phường Nguyễn Trãi
+phường Châu Sơn
+phường Hai Bà Trưng
+phường Lam Hạ
+phường Liêm Chính
+phường Lương Khánh Thiện
+phường Thanh Châu
+phường Thanh Tuyền
+phường Bắc Hà
+phường Đại Nài
+phường Hà Huy Tập
+phường Nam Hà
+phường Nguyễn Du
+phường Tân Giang
+phường Thạch Linh
+phường Thạch Quý
+phường Văn Yên
+phường Bình Hàn
+phường Cẩm Thượng
+phường Hải Tân
+phường Lê Thanh Nghị
+phường Nam Đồng
+phường Ngọc Châu
+phường Nhị Châu
+phường Phạm Ngũ Lão
+phường Tân Hưng
+phường Thạch Khôi
+phường Tứ Minh
+phường Việt Hòa
+phường An Lạc
+phường Bến Tắm
+phường Cổ Thành
+phường Cộng Hòa
+phường Đồng Lạc
+phường Hoàng Tân
+phường Hoàng Tiến
+phường Phả Lại
+phường Sao Đỏ
+phường Tân Dân
+phường Thái Học
+phường Văn An
+phường Văn Đức
+phường Hiệp Lợi
+phường Hiệp Thành
+phường Lái Hiếu
+phường Ngã Bảy
+phường Dân Chủ
+phường Đồng Tiến
+phường Hữu Nghị
+phường Kỳ Sơn
+phường Phương Lâm
+phường Quỳnh Lâm
+phường Tân Hòa
+phường Tân Thịnh
+phường Thái Bình
+phường Thịnh Lang
+phường Trung Minh
+phường An Khánh
+phường An Lợi Đông
+phường Bình Chiểu
+phường Bình Thọ
+phường Anh Khoa
+phường Bình Trưng Đông
+phường Bình Trưng Tây
+phường Cát Lái
+phường Hiệp Bình Chánh
+phường Hiệp Bình Phước
+phường Hiệp Phú
+phường Linh Chiểu
+phường Linh Đông
+phường Linh Tây
+phường Linh Trung
+phường Linh Xuân
+phường Long Bình
+phường Long Phước
+phường Long Thạnh Mỹ
+phường Long Trường
+phường Phú Hữu
+phường Phước Bình
+phường Phước Long A
+phường Phước Long B
+phường Tam Bình
+phường Tam Phú
+phường Tăng Nhơn Phú A
+phường Tăng Nhơn Phú B
+phường Thạnh Mỹ Lợi
+phường Thảo Điền
+phường Thủ Thiêm
+phường Trường Thọ
+phường Trường Thạnh
+phường An Tảo
+phường Hiến Nam
+phường Hồng Châu
+phường Lam Sơn

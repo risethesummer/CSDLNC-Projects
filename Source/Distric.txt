@@ -1,0 +1,48 @@
+quận 1
+quận 2
+quận 3
+quận 4
+quận 5
+quận 6
+quận 7
+quận 8
+quận 9
+quận 10
+quận 11
+quận 12
+quận Ba Đình
+quận Ba Đình
+quận Bình Tân
+quận Bình Thạnh
+quận Bình Thủy
+quận Cái Răng
+quận Cầu Giấy
+quận Cẩm Lệ
+quận Dương Kinh
+quận Đống Đa
+quận Đồ Sơn
+quận Gò Vấp
+quận Hai Bà Trưng
+quận Hà Đông
+quận Hải An
+quận Hải Châu
+quận Hoàn Kiếm
+quận Hoàng Mai
+quận Hồng Bàng
+quận Kiến An
+quận Lê Chân
+quận Liên Chiểu
+quận Long Biên 
+quận Nam Từ Liêm
+quận Ngô Quyền
+quận Ngũ Hành Sơn
+quận Ninh Kiều
+quận Ô Môn
+quận Phú Nhuận
+quận Sơn Trà
+quận Tân Bình
+quận Tân Phú
+quận Tây Hồ
+quận Thanh Khê
+quận Thanh Xuân
+quận Thốt Nốt
