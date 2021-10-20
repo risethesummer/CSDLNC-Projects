@@ -1,5 +1,8 @@
 ﻿CREATE DATABASE cua_hang;
+GO
+
 USE cua_hang;
+GO
 
 --Tạo bảng khách hàng
 CREATE TABLE KhachHang (Ma CHAR(8) PRIMARY KEY, --example: hd000000 -> hd999999

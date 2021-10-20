@@ -1,4 +1,6 @@
-﻿INSERT INTO KhachHang(Ma, Ho, Ten, NgaySinh, SoNha, Duong, Phuong, Quan, ThanhPho, SoDT)
+﻿use cua_hang;
+
+INSERT INTO KhachHang(Ma, Ho, Ten, NgaySinh, SoNha, Duong, Phuong, Quan, ThanhPho, SoDT)
 VALUES
 	('kh000000', N'Hồ', N'Nhật Linh', '2001-05-19', 155, N'Trần Xuân Soạn', N'Tân Hưng', N'7', N'Hồ Chí Minh', '012876888'), 
 	('kh000001', N'Trần', N'Phước Xuân', '2000-06-28', 342, N'Nguyễn Hữu Thọ', N'Tân Thuận Đông', N'7', N'Hồ Chí Minh', '0981113679'), 
@@ -10,10 +12,10 @@ VALUES
 
 INSERT INTO HoaDon (Ma, MaKH, TongTien)
 VALUES
-	('hd000000', 'kh000000', 130000),
-	('hd000001', 'kh000005', 275000),
-	('hd000002', 'kh000003', 85000),
-	('hd000003', 'kh000004', 135000);
+	('hd000000', 'kh000000',0),-- 130000),
+	('hd000001', 'kh000005',0),-- 275000),
+	('hd000002', 'kh000003',0),-- 85000),
+	('hd000003', 'kh000004',0)-- 135000);
 
 INSERT INTO SanPham(Ma, Ten, SoLuongTon, MoTa, Gia)
 VALUES
@@ -27,19 +29,20 @@ VALUES
 	('sp00007', N'Cá ngừ ngâm dầu hộp', 113, N'Thức ăn đóng hộp', 31000),
 	('sp00008', N'Chả cá bịch 500g', 53, N'Nguyên liệu nấu ăn', 77000);
 
-INSERT INTO HoaDonChiTiet (MaHD, MaSP, SoLuong, GiaBan, GiaGiam, ThanhTien)
+INSERT INTO HoaDonChiTiet (MaHD, MaSP, SoLuong, GiaGiam)
 VALUES
-	('hd000000', 'sp00000', 3, 20000, 0, 60000),
-	('hd000000', 'sp00008', 1, 77000, 7000, 70000),
+	('hd000000', 'sp00000', 3, 0),
+	('hd000000', 'sp00008', 1, 7000),
 
-	('hd000001', 'sp00001', 2, 25000, 0, 50000),
-	('hd000001', 'sp00003', 3, 5000, 0, 15000),
-	('hd000001', 'sp00004', 10, 8000, 1000, 70000),
-	('hd000001', 'sp00008', 2, 77000, 7000, 140000),
+	('hd000001', 'sp00001', 2, 0),
+	('hd000001', 'sp00003', 3, 0),
+	('hd000001', 'sp00004', 10, 1000),
+	('hd000001', 'sp00008', 2, 7000),
 
-	('hd000002', 'sp00002', 1, 15000, 0, 15000),
-	('hd000002', 'sp00005', 6, 10000, 1000, 50000),
-	('hd000002', 'sp00006', 1, 23000, 3000, 20000),
+	('hd000002', 'sp00002', 1, 0),
+	('hd000002', 'sp00005', 6, 1000),
+	('hd000002', 'sp00006', 1, 3000),
 
-	('hd000003', 'sp00001', 3, 25000, 0, 75000),
-	('hd000003', 'sp00007', 2, 31000, 1000, 60000);
+	('hd000003', 'sp00001', 3,  0),
+	('hd000003', 'sp00007', 2,  1000);
+
