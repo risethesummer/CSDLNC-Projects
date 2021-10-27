@@ -3,7 +3,7 @@ const sql = require("mssql");
 const config = {
     user: "SA",
     userName: "SA", // update me
-    password: "Smokingheal1502", // update me
+    password: "YOURPASS", // update me
     database: "cua_hang",
     server: "localhost",
     parseJSON: true,
