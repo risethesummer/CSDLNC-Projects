@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <title>Customers!</title>
+</head>
+
+<body>
+    <%- include('shared/navbar', {}); -%>
+    <% if(have_customer) { %>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-7">
+                    <div class="col-md-12">
+                        <div class="panel panel-default m-2">
+                            <button id="submit-button" class="btn btn-primary">
+                                Tạo Invoice
+                            </button>
+                            <div class="panel-body">
+                                <table class="table table-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Ma</th>
+                                            <th>Ten</th>
+                                            <th>SoLuong</th>
+                                            <th>GiaGiam</th>
+                                            <th>ThanhTien</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="selected-products">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="products" class="col-6 col-md-5">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table class="table table-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Ma</th>
+                                            <th>Ten</th>
+                                            <th>SoLuongTon</th>
+                                            <th>Gia</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                            <% for(var i=0; i < products.length && i < page_size; i++) { %>
+                                                <tr
+                                                    class="accordion-toggle"
+                                                >
+                                                    <td>
+                                                        <button data-target='<%- JSON.stringify(products[i]); %>' class="btn btn-primary btn-product">
+                                                            Chọn
+                                                        </button>
+                                                    </td>
+                                                    <td><%= products[i].Ma %></td>
+                                                    <td><%= products[i].Ten %></td>
+                                                    <td><%= products[i].SoLuongTon %></td>
+                                                    <td><%= products[i].Gia %></td>
+                                                </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                                <ul class="pager">
+                                        <li class="previous <% if (page <= 1) { %>d-none<% } %>"><a id="products-previous" href="?customer=<%= customer %>&page=<%= page - 1 %>">Previous</a></li>
+                                        <li class="next  <% if (page_size >= products.length) { %>d-none<% } %>"><a id="products-next" href="?customer=<%= customer %>&page=<%= page + 1 %>">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Ma</th>
+                                    <th>Ho</th>
+                                    <th>Ten</th>
+                                    <th>SoDT</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                    <% for(var i=0; i < customers.length && i < page_size; i++) { %>
+                                        <tr
+                                            data-toggle="collapse"
+                                            data-target="#collapse-<%= i %>"
+                                            class="accordion-toggle"
+                                        >
+                                            <td>
+                                                <a href="?customer=<%= customers[i].Ma %>">
+                                                    <button class="btn btn-primary">
+                                                        Chọn
+                                                    </button>
+                                                </a>
+                                            </td>
+                                            <td><%= customers[i].Ma %></td>
+                                            <td><%= customers[i].Ho %></td>
+                                            <td><%= customers[i].Ten %></td>
+                                            <td><%= customers[i].SoDT %></td>
+                                        </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                        <ul class="pager">
+                            <% if (page > 1) { %>
+                                <li class="previous"><a href="?page=<%= page - 1 %>">Previous</a></li>
+                            <% } %>
+                            <% if (page_size < customers.length) { %>
+                                <li class="next"><a href="?page=<%= page + 1 %>">Next</a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %>
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <% if(have_customer) { %>
+        <script>
+            const selectedTable = $("#selected-products");
+            $("#submit-button").on("click",function(){
+                $(this).attr("disabled", true)
+                const lines = $(".selected-product").toArray().map(function(v) {
+                    const value = $(v);
+                    return {
+                        MaSP: value.data("code"),
+                        SoLuong: value.data("quantity"),
+                        GiaGiam: value.data("discount")
+                    }
+                })
+                $.ajax({
+                    type: "POST",
+                    url: "",
+                    data: JSON.stringify({
+                        lines
+                    }),
+                    success: function() {
+                        window.location.replace("/");
+                    },
+                    contentType : 'application/json',
+                });
+                $(this).attr("disabled", false)
+            })
+            function changeTable(htmlData) {
+                const curTable = $("#products")
+                const table = $('#products',$(htmlData));
+                curTable.html(table.html());
+                reloadPagination();
+            }
+            function reloadDiscount() {
+                $(".discount").on("change",function() {
+                    const value = parseFloat($(this).val());
+                    const curLine = $(this).parent().parent();
+                    const totalElement = $(".total",curLine);
+                    const total = curLine.data("total") - value;
+                    curLine.data("total", total);
+                    curLine.data("discount", value);
+                    totalElement.text(total.toString());
+                })
+            }
+            function addLine(lineData) {
+                const curLine = $(`#${lineData.Ma}`);
+                if (curLine.length) {
+                    const quantityElement = $(".quantity",curLine);
+                    const totalElement = $(".total",curLine);
+                    const discount = curLine.data("discount");
+                    const quantity = curLine.data("quantity") + 1;
+                    const total = quantity * lineData.Gia  - discount
+                    curLine.data("quantity",quantity);
+                    curLine.data("total", total);
+                    quantityElement.text(quantity.toString());
+                    totalElement.text(total.toString());
+                } else {
+                    selectedTable.append(`
+                        <tr
+                            class="accordion-toggle selected-product" id="${lineData.Ma}" data-quantity="${1}" data-discount="${0.0}" data-code="${lineData.Ma}" data-total=${lineData.Gia}
+                        >
+                            <td>${lineData.Ma}</td>
+                            <td>${lineData.Ten}</td>
+                            <td class="quantity">${1}</td>
+                            <td>
+                                <input class="discount" type="number" min="1" step="1" value="0.0" />
+                            </td>
+                            <td class="total">${lineData.Gia}</td>
+                        </tr>
+                    `);
+                    reloadDiscount();
+                }
+            }
+            function reloadPagination() {
+                const nextButton = $("#products-next");
+                const previousButton = $("#products-previous");
+                nextButton.on("click",function(event) {
+                    event.preventDefault();
+                    const link = nextButton.attr('href');
+                    $.get(link, changeTable)
+                })
+                previousButton.on("click",function(event) {
+                    event.preventDefault();
+                    const link = $("this").attr('href');
+                    $.get(link,changeTable)
+                })
+                $(".btn-product").on("click",function() {
+                    const data = $(this).data("target")
+                    addLine(data);
+                })
+            }
+            reloadPagination();
+        </script>
+    <% } %>
+    
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <style>
+            .hiddenRow {
+                padding: 0 !important;
+            }
+        </style>
+
+        <title>Invoices!</title>
+    </head>
+    <body>
+        <%- include('shared/navbar', {}); -%>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Ma</th>
+                                    <th>MaKH</th>
+                                    <th>NgayLap</th>
+                                    <th>TongTien</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                    <% for(var i=0; i < invoices.length && i < page_size; i++) { %>
+                                        <tr
+                                            data-toggle="collapse"
+                                            data-target="#collapse-<%= i %>"
+                                            class="accordion-toggle"
+                                        >
+                                            <td>
+                                                <button class="btn btn-primary">
+                                                    Mở rộng
+                                                </button>
+                                            </td>
+                                            <td><%= invoices[i].Ma %></td>
+                                            <td><%= invoices[i].MaKH %></td>
+                                            <td><%= invoices[i].NgayLap %></td>
+                                            <td><%= invoices[i].TongTien %></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="12" class="hiddenRow">
+                                                <div
+                                                    class="accordian-body collapse"
+                                                    id="collapse-<%= i %>"
+                                                >
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr class="info">
+                                                                <th>MaHD</th>
+                                                                <th>MaSP</th>
+                                                                <th>SoLuong</th>
+                                                                <th>GiaBan</th>
+                                                                <th>GiaGiam</th>
+                                                                <th>ThanhTien</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <% for(var z=0; z < invoices[i].lines.length; z++) { %>
+                                                                <tr>
+                                                                    <td><%= invoices[i].lines[z].MaHD %></td>
+                                                                    <td><%= invoices[i].lines[z].MaSP %></td>
+                                                                    <td><%= invoices[i].lines[z].SoLuong %></td>
+                                                                    <td><%= invoices[i].lines[z].GiaBan %></td>
+                                                                    <td><%= invoices[i].lines[z].GiaGiam %></td>
+                                                                    <td><%= invoices[i].lines[z].ThanhTien %></td>
+                                                                </tr>
+                                                            <% } %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                        <ul class="pager">
+                            <% if (page > 1) { %>
+                                <li class="previous"><a href="?page=<%= page - 1 %>">Previous</a></li>
+                            <% } %>
+                            <% if (page_size < invoices.length) { %>
+                                <li class="next"><a href="?page=<%= page + 1 %>">Next</a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

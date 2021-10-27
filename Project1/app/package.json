@@ -1,0 +1,57 @@
+{
+  "name": "express-project-template",
+  "version": "0.0.2",
+  "description": "A Node.js template app using Express 4",
+  "author": "@geostarters",
+  "engines": {
+    "node": ">=8.17.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build-dev": "rm -rf dist && webpack --mode development",
+    "build": "rm -rf dist && webpack --mode production",
+    "build-docs": "documentation build --github --format json --config ./docs/documentation.yml --output docs/components/api.json src/common/*/*.js",
+    "dev": "nodemon -w src",
+    "lint": "eslint --fix --cache --ignore-path .gitignore src",
+    "release": "run-s test build",
+    "start": "run-s build start-node",
+    "start-node": "node --trace-warnings dist/index.js",
+    "test": "run-s lint test-unit test-coverage",
+    "test-unit-watch": "jest --watch",
+    "test-unit": "jest",
+    "test-coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@geostarters/eslint-config": "^0.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "mssql": "^7.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-flow-strip-types": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-jest": "^26.1.0",
+    "babel-loader": "^8.1.0",
+    "cluster": "^0.7.7",
+    "core-js": "^3.6.5",
+    "documentation": "^13.0.2",
+    "eslint-plugin-jest": "^23.18.0",
+    "flow-coverage-report": "^0.7.0",
+    "flow-remove-types": "^2.129.0",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "regenerator-runtime": "^0.13.7",
+    "remove-flow-types-loader": "^1.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.0"
+  }
+}
