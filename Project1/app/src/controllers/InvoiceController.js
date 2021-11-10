@@ -27,7 +27,7 @@ class InvoiceController {
             ORDER BY ${order_by}
             ${!get_all ? paginate_str : "OFFSET 0 ROWS"}
           ) AS PAGINATED
-          INNER JOIN HoaDonChiTiet AS lines ON PAGINATED.Ma = lines.MaHD
+          INNER JOIN HoaDonChiTiet AS lines ON PAGINATED.MaHD = lines.MaHD
           FOR JSON AUTO;
         `;
         return await this.query(connection, query_str);
@@ -47,7 +47,7 @@ class InvoiceController {
         const query_str = `
           SELECT * 
           FROM HoaDon
-          ORDER BY Ma DESC
+          ORDER BY MaHD DESC
           OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
         `;
         const list = await this.query(connection, query_str);
@@ -62,10 +62,10 @@ class InvoiceController {
         } else {
             code =
                 "hd" +
-                `${parseInt(last.Ma.replace("hd", "")) + 1}`.padStart(6, "0");
+                `${parseInt(last.MaHD.replace("hd", "")) + 1}`.padStart(6, "0");
         }
         var query_str = `
-        INSERT INTO HoaDon (Ma, MaKH, TongTien) VALUES ('${code}', '${customer}',0);
+        INSERT INTO HoaDon (MaHD, MaKH, TongTien) VALUES ('${code}', '${customer}',0);
         INSERT INTO HoaDonChiTiet (MaHD, MaSP, SoLuong, GiaGiam) VALUES 
         `;
 
