@@ -10,7 +10,7 @@ class CustomerController {
         page = 1,
         page_size = 10,
         get_all = false,
-        order_by = "Ma DESC",
+        order_by = "MaKH DESC",
         filter_query = ""
     ) {
         const paginate_str = `
