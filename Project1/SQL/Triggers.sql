@@ -93,7 +93,6 @@ BEGIN
 		ROLLBACK TRANSACTION;
 	END CATCH;	
 END
-GO
 
 ----------------------------------------------------------
 ------------------------- UPDATE DETAILED BILL------------
