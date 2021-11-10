@@ -89,6 +89,8 @@ BEGIN
 	END CATCH;	
 END
 
+------------------------- UPDATE -------------------------
+----------------------------------------------------------
 GO
 --Trigger instead of updating a new detailed bill
 CREATE TRIGGER TRG_HDCT_InsteadOfUpdating
@@ -189,6 +191,8 @@ BEGIN
 	DEALLOCATE DeleteBillDetailedCursor;
 END
 
+------------------------- DELETE -------------------------
+----------------------------------------------------------
 GO
 --Trigger checking the total price after inserting the bill
 CREATE TRIGGER TRG_HD_AfterInserting
