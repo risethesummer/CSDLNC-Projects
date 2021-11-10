@@ -51,7 +51,7 @@ class InvoiceController {
           OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
         `;
         const list = await this.query(connection, query_str);
-        return list?.length ? list[0] : null;
+        return list.length > 0 ? list[0] : null;
     }
 
     async create(connection, customer, lines) {
