@@ -1,10 +1,12 @@
 ﻿CREATE DATABASE cua_hang;
-
 GO
+
 USE cua_hang;
-
---Tạo bảng khách hàng
 GO
+
+----------------------
+--Tạo bảng khách hàng-
+----------------------
 CREATE TABLE KhachHang (MaKH CHAR(8) PRIMARY KEY, --example: hd000000 -> hd999999
 	Ho NVARCHAR(10) NOT NULL,
 	Ten NVARCHAR(10) NOT NULL,
@@ -15,25 +17,32 @@ CREATE TABLE KhachHang (MaKH CHAR(8) PRIMARY KEY, --example: hd000000 -> hd99999
 	Quan NVARCHAR(50),
 	TPho NVARCHAR(50) NOT NULL,
 	DienThoai VARCHAR(15) NOT NULL CONSTRAINT CHK_KhachHang_SDT CHECK (DienThoai NOT LIKE '%[^0-9]%')); --phone characters are digits
-
---Tạo bảng hóa đơn
 GO
+
+----------------------
+--Tạo bảng hóa đơn----
+----------------------
 CREATE TABLE HoaDon (MaHD CHAR(8) PRIMARY KEY, --example: hd000000 -> hd999999
 	MaKH CHAR(8) NOT NULL,
 	NgayLap DATE NOT NULL DEFAULT GETDATE(),
 	TongTien INT NOT NULL DEFAULT 0 CONSTRAINT CHK_HoaDon_TongTien CHECK (TongTien >= 0),
 	CONSTRAINT FK_HoaDon_MaKH FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH) ON DELETE CASCADE);
+GO
 
---Tạo bảng sản phẩm
+---------------------
+--Tạo bảng sản phẩm--
+---------------------
 GO
 CREATE TABLE SanPham (MaSP CHAR(7) PRIMARY KEY, --example: sp00000 -> sp99999
 	TenSP NVARCHAR(50) NOT NULL UNIQUE,
 	SoLuongTon INT NOT NULL DEFAULT 0 CONSTRAINT CHK_SanPham_SoLuongTon CHECK (SoLuongTon >= 0),
 	MoTa NVARCHAR(100) DEFAULT '',
 	Gia INT NOT NULL CONSTRAINT CHK_SanPham_Gia CHECK (Gia >= 0));
-
---Tạo bảng chi tiết hóa đơn
 GO
+
+------------------------------
+--Tạo bảng chi tiết hóa đơn---
+------------------------------
 CREATE TABLE CT_HoaDon (MaHD CHAR(8) NOT NULL,
 	MaSP CHAR(7) NOT NULL,
 	SoLuong INT NOT NULL CONSTRAINT CHK_CTHD_SoLuong CHECK (SoLuong > 0),

@@ -1,7 +1,10 @@
 USE cua_hang;
-
 GO
---Update current total price for a new by its detailed rows
+
+----------------------------------------------------------
+---------UPDATE DETAILED BILL STORED PROCEDURE------------
+----------------------------------------------------------
+--Update current total price for a bill by its detailed rows
 CREATE PROCEDURE UpdateTotalPriceBill @MaHD CHAR(8)
 AS
 BEGIN
@@ -22,9 +25,11 @@ BEGIN
 	SET TongTien = @TongTien
  	WHERE HoaDon.MaHD = @MaHD;
 END
-
-
 GO
+
+----------------------------------------------------------
+------------------------- INSERT DETAILED BILL------------
+----------------------------------------------------------
 --Trigger instead of inserting a new detailed bill
 CREATE TRIGGER TRG_HDCT_InsteadOfInserting
 ON CT_HoaDon
@@ -88,10 +93,11 @@ BEGIN
 		ROLLBACK TRANSACTION;
 	END CATCH;	
 END
-
-------------------------- UPDATE -------------------------
-----------------------------------------------------------
 GO
+
+----------------------------------------------------------
+------------------------- UPDATE DETAILED BILL------------
+----------------------------------------------------------
 --Trigger instead of updating a new detailed bill
 CREATE TRIGGER TRG_HDCT_InsteadOfUpdating
 ON CT_HoaDon
@@ -152,8 +158,11 @@ BEGIN
 		ROLLBACK TRANSACTION;
 	END CATCH;	
 END
-
 GO
+
+----------------------------------------------------------
+------------------------- DELETE DETAILED BILL------------
+----------------------------------------------------------
 --Trigger after deleting a new detailed bill
 CREATE TRIGGER TRG_HDCT_AfterDeleting
 ON CT_HoaDon
@@ -190,10 +199,11 @@ BEGIN
 	CLOSE DeleteBillDetailedCursor;
 	DEALLOCATE DeleteBillDetailedCursor;
 END
-
-------------------------- DELETE -------------------------
-----------------------------------------------------------
 GO
+
+----------------------------------------------------------
+------------------------- INSERT BILL---------------------
+----------------------------------------------------------
 --Trigger checking the total price after inserting the bill
 CREATE TRIGGER TRG_HD_AfterInserting
 ON HoaDon
@@ -217,8 +227,11 @@ BEGIN
 	CLOSE AddBillCursor;
 	DEALLOCATE AddBillCursor;
 END
-
 GO
+
+----------------------------------------------------------
+------------------------- UPDATE BILL---------------------
+----------------------------------------------------------
 --Trigger checking the total price after updating the bill
 CREATE TRIGGER TRG_HD_AfterUpdating
 ON HoaDon
