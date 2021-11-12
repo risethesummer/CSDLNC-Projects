@@ -24,13 +24,14 @@ BEGIN
 	UPDATE HoaDon
 	SET TongTien = @TongTien
  	WHERE HoaDon.MaHD = @MaHD;
-END
+END;
 GO
 
 ----------------------------------------------------------
 ------------------------- INSERT DETAILED BILL------------
 ----------------------------------------------------------
 --Trigger instead of inserting a new detailed bill
+GO
 CREATE TRIGGER TRG_HDCT_InsteadOfInserting
 ON CT_HoaDon
 INSTEAD OF INSERT
@@ -92,7 +93,8 @@ BEGIN
 		RAISERROR('Could not insert new bill detailed', 16, 1);
 		ROLLBACK TRANSACTION;
 	END CATCH;	
-END
+END;
+GO
 
 ----------------------------------------------------------
 ------------------------- UPDATE DETAILED BILL------------
@@ -156,7 +158,7 @@ BEGIN
 		RAISERROR('Could not update the bill detailed', 16, 1);
 		ROLLBACK TRANSACTION;
 	END CATCH;	
-END
+END;
 GO
 
 ----------------------------------------------------------
@@ -179,25 +181,25 @@ BEGIN
 	
 	WHILE @@FETCH_STATUS = 0
 	BEGIN
+		EXEC UpdateTotalPriceBill @MaHD;
 		--If there is no remaining bill detailed of the bill -> delete the bill
-		IF NOT EXISTS (SELECT * 
-						FROM CT_HoaDon
-						WHERE CT_HoaDon.MaHD = @MaHD)
-			BEGIN
-				DELETE FROM HoaDon
-				WHERE HoaDon.MaHD = @MaHD;
-			END
-		--If the bill still has bill detailed -> update total price
-		ELSE
-			BEGIN
-				EXEC UpdateTotalPriceBill @MaHD;
-			END
+		--IF NOT EXISTS (SELECT * 
+		--				FROM CT_HoaDon
+		--				WHERE CT_HoaDon.MaHD = @MaHD)
+		--	BEGIN
+		--		DELETE FROM HoaDon
+		--		WHERE HoaDon.MaHD = @MaHD;
+		--	END
+		----If the bill still has bill detailed -> update total price
+		--ELSE
+			--BEGIN
+			--END
 		--Fetch next row
 		FETCH NEXT FROM DeleteBillDetailedCursor INTO @MaHD;
 	END
 	CLOSE DeleteBillDetailedCursor;
 	DEALLOCATE DeleteBillDetailedCursor;
-END
+END;
 GO
 
 ----------------------------------------------------------
@@ -225,7 +227,7 @@ BEGIN
 	END
 	CLOSE AddBillCursor;
 	DEALLOCATE AddBillCursor;
-END
+END;
 GO
 
 ----------------------------------------------------------
@@ -257,4 +259,4 @@ BEGIN
 	END
 	CLOSE UpdateBillCursor;
 	DEALLOCATE UpdateBillCursor;
-END
+END;
