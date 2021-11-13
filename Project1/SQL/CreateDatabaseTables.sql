@@ -56,5 +56,5 @@ GO
 --------------------------------------
 --Tạo index cho MaSP trong CT_HoaDon--
 --------------------------------------
-CREATE NONCLUSTERED INDEX [CT_HoaDon_MaSP_ID]
+CREATE NONCLUSTERED INDEX [CT_HoaDon_MaSP]
 ON CT_HoaDon([MaSP])
