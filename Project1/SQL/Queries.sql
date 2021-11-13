@@ -54,3 +54,22 @@ GROUP BY SP.MaSP, SP.TenSP, SP.Gia, SP.MoTa, SP.SoLuongTon
 HAVING SUM(HDCT.ThanhTien) >= ALL (SELECT SUM(ThanhTien)
 													FROM CT_HoaDon
 													GROUP BY CT_HoaDon.MaSP);
+
+
+--Query A JOIN B JOIN C JOIN D
+SELECT * 
+FROM KhachHang KH
+	JOIN HoaDon HD ON KH.MaKH = HD.MaKH
+	JOIN CT_HoaDon CTHD ON HD.MaHD = CTHD.MaHD
+	JOIN SanPham SP ON CTHD.MaSP = SP.MaSP;
+--Query A, B, C, D WHERE A.x = B.x AND B.y = C.y..
+SELECT * 
+FROM KhachHang KH, HoaDon HD, CT_HoaDon CTHD, SanPham SP
+WHERE KH.MaKH = HD.MaKH AND HD.MaHD = CTHD.MaHD AND CTHD.MaSP = SP.MaSP;
+
+--Query A JOIN B (big A, small B)
+SELECT *
+FROM SanPham SP JOIN CT_HoaDon CTHD ON SP.MaSP = CTHD.MaSP;
+--Query B JOIN A
+SELECT *
+FROM CT_HoaDon CTHD JOIN SanPham SP ON SP.MaSP = CTHD.MaSP;

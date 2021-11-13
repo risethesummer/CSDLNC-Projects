@@ -1,6 +1,7 @@
 USE cua_hang;
 GO
 
+
 ----------------------------------------------------------
 ---------UPDATE DETAILED BILL STORED PROCEDURE------------
 ----------------------------------------------------------
@@ -182,19 +183,6 @@ BEGIN
 	WHILE @@FETCH_STATUS = 0
 	BEGIN
 		EXEC UpdateTotalPriceBill @MaHD;
-		--If there is no remaining bill detailed of the bill -> delete the bill
-		--IF NOT EXISTS (SELECT * 
-		--				FROM CT_HoaDon
-		--				WHERE CT_HoaDon.MaHD = @MaHD)
-		--	BEGIN
-		--		DELETE FROM HoaDon
-		--		WHERE HoaDon.MaHD = @MaHD;
-		--	END
-		----If the bill still has bill detailed -> update total price
-		--ELSE
-			--BEGIN
-			--END
-		--Fetch next row
 		FETCH NEXT FROM DeleteBillDetailedCursor INTO @MaHD;
 	END
 	CLOSE DeleteBillDetailedCursor;
@@ -211,22 +199,15 @@ ON HoaDon
 AFTER INSERT
 AS
 BEGIN
-	DECLARE @MaHD CHAR(8);
-
-	DECLARE AddBillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY
-		FOR SELECT MaHD FROM inserted;
-
-	OPEN AddBillCursor;
-	FETCH NEXT FROM AddBillCursor INTO @MaHD;
-
-	WHILE @@FETCH_STATUS = 0
-	BEGIN
-		--Update total price if inserting a ridiculous value
-		EXEC UpdateTotalPriceBill @MaHD;
-		FETCH NEXT FROM AddBillCursor INTO @MaHD;
-	END
-	CLOSE AddBillCursor;
-	DEALLOCATE AddBillCursor;
+	IF EXISTS (SELECT *
+					FROM inserted i
+						JOIN CT_HoaDon CTHD ON i.MaHD = CTHD.MaHD
+					GROUP BY i.MaHD, i.TongTien
+					HAVING i.TongTien <> (SELECT SUM(CTHD.ThanhTien)))
+		BEGIN
+			RAISERROR('Could not insert the bill', 16, 1);
+			ROLLBACK TRANSACTION;
+		END
 END;
 GO
 
@@ -239,24 +220,13 @@ ON HoaDon
 AFTER UPDATE
 AS
 BEGIN
-	DECLARE @MaHD CHAR(8), @TongTien INT;
-	DECLARE UpdateBillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY
-		FOR SELECT MaHD, TongTien FROM inserted;
-
-	OPEN UpdateBillCursor;
-	FETCH NEXT FROM UpdateBillCursor INTO @MaHD, @TongTien;
-	WHILE @@FETCH_STATUS = 0
-	BEGIN
-		--If the total is not equal to the sum price of detailed rows
-		IF @TongTien != (SELECT SUM(HDCT.ThanhTien)
-							FROM CT_HoaDon HDCT
-							WHERE HDCT.MaHD = @MaHD)
+	IF EXISTS (SELECT *
+					FROM inserted i
+						JOIN CT_HoaDon CTHD ON i.MaHD = CTHD.MaHD
+					GROUP BY i.MaHD, i.TongTien
+					HAVING i.TongTien <> (SELECT SUM(CTHD.ThanhTien)))
 		BEGIN
 			RAISERROR('Could not update the bill', 16, 1);
 			ROLLBACK TRANSACTION;
 		END
-		FETCH NEXT FROM UpdateBillCursor INTO @MaHD, @TongTien;
-	END
-	CLOSE UpdateBillCursor;
-	DEALLOCATE UpdateBillCursor;
 END;

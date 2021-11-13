@@ -32,7 +32,6 @@ GO
 ---------------------
 --Tạo bảng sản phẩm--
 ---------------------
-GO
 CREATE TABLE SanPham (MaSP CHAR(7) PRIMARY KEY, --example: sp00000 -> sp99999
 	TenSP NVARCHAR(50) NOT NULL UNIQUE,
 	SoLuongTon INT NOT NULL DEFAULT 0 CONSTRAINT CHK_SanPham_SoLuongTon CHECK (SoLuongTon >= 0),
@@ -52,3 +51,10 @@ CREATE TABLE CT_HoaDon (MaHD CHAR(8) NOT NULL,
 	PRIMARY KEY (MaHD, MaSP),
 	CONSTRAINT FK_CTHD_MaHD FOREIGN KEY (MaHD) REFERENCES HoaDon(MaHD) ON DELETE CASCADE,
 	CONSTRAINT FK_CTDH_MaSP FOREIGN KEY (MaSP) REFERENCES SanPham(MaSP) ON DELETE CASCADE);
+GO
+
+--------------------------------------
+--Tạo index cho MaSP trong CT_HoaDon--
+--------------------------------------
+CREATE NONCLUSTERED INDEX [CT_HoaDon_MaSP]
+ON CT_HoaDon([MaSP])
