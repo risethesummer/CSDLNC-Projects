@@ -1,6 +1,7 @@
 USE cua_hang;
 GO
 
+
 ----------------------------------------------------------
 ---------UPDATE DETAILED BILL STORED PROCEDURE------------
 ----------------------------------------------------------
@@ -24,7 +25,7 @@ BEGIN
 	UPDATE HoaDon
 	SET TongTien = @TongTien
  	WHERE HoaDon.MaHD = @MaHD;
-END
+END;
 GO
 
 ----------------------------------------------------------
@@ -92,7 +93,8 @@ BEGIN
 		RAISERROR('Could not insert new bill detailed', 16, 1);
 		ROLLBACK TRANSACTION;
 	END CATCH;	
-END
+END;
+GO
 
 ----------------------------------------------------------
 ------------------------- UPDATE DETAILED BILL------------
@@ -156,7 +158,7 @@ BEGIN
 		RAISERROR('Could not update the bill detailed', 16, 1);
 		ROLLBACK TRANSACTION;
 	END CATCH;	
-END
+END;
 GO
 
 ----------------------------------------------------------
@@ -197,7 +199,7 @@ BEGIN
 	END
 	CLOSE DeleteBillDetailedCursor;
 	DEALLOCATE DeleteBillDetailedCursor;
-END
+END;
 GO
 
 ----------------------------------------------------------
@@ -218,7 +220,7 @@ BEGIN
 			RAISERROR('Could not insert the bill', 16, 1);
 			ROLLBACK TRANSACTION;
 		END
-END
+END;
 GO
 
 ----------------------------------------------------------
@@ -239,4 +241,4 @@ BEGIN
 			RAISERROR('Could not update the bill', 16, 1);
 			ROLLBACK TRANSACTION;
 		END
-END
+END;

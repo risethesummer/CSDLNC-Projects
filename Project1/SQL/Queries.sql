@@ -44,10 +44,6 @@ HAVING SUM(HDCT.SoLuong) >= ALL (SELECT SUM(SoLuong)
 									GROUP BY CT_HoaDon.MaSP);
 GO
 
-GO
-CREATE NONCLUSTERED INDEX [CT_HoaDon_MaSP_ID]
-ON CT_HoaDon([MaSP])
-
 -----------------------------------------------------
 --Cho danh sách các sản phẩm có doanh thu cao nhất---
 ----------------------------------------------------
