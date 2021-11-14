@@ -27,7 +27,7 @@
                                 <table class="table table-condensed table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Ma</th>
+                                            <th>MaSP</th>
                                             <th>Ten</th>
                                             <th>SoLuong</th>
                                             <th>GiaGiam</th>
@@ -49,8 +49,8 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>Ma</th>
-                                            <th>Ten</th>
+                                            <th>MaSP</th>
+                                            <th>TenSP</th>
                                             <th>SoLuongTon</th>
                                             <th>Gia</th>
                                         </tr>
@@ -66,8 +66,8 @@
                                                             Chọn
                                                         </button>
                                                     </td>
-                                                    <td><%= products[i].Ma %></td>
-                                                    <td><%= products[i].Ten %></td>
+                                                    <td><%= products[i].MaSP %></td>
+                                                    <td><%= products[i].TenSP %></td>
                                                     <td><%= products[i].SoLuongTon %></td>
                                                     <td><%= products[i].Gia %></td>
                                                 </tr>
@@ -93,7 +93,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Ma</th>
+                                    <th>MaKH</th>
                                     <th>Ho</th>
                                     <th>Ten</th>
                                     <th>SoDT</th>
@@ -108,16 +108,16 @@
                                             class="accordion-toggle"
                                         >
                                             <td>
-                                                <a href="?customer=<%= customers[i].Ma %>">
+                                                <a href="?customer=<%= customers[i].MaKH %>">
                                                     <button class="btn btn-primary">
                                                         Chọn
                                                     </button>
                                                 </a>
                                             </td>
-                                            <td><%= customers[i].Ma %></td>
+                                            <td><%= customers[i].MaKH %></td>
                                             <td><%= customers[i].Ho %></td>
                                             <td><%= customers[i].Ten %></td>
-                                            <td><%= customers[i].SoDT %></td>
+                                            <td><%= customers[i].DienThoai %></td>
                                         </tr>
                                     <% } %>
                             </tbody>
@@ -189,7 +189,7 @@
                 })
             }
             function addLine(lineData) {
-                const curLine = $(`#${lineData.Ma}`);
+                const curLine = $(`#${lineData.MaSP}`);
                 if (curLine.length) {
                     const quantityElement = $(".quantity",curLine);
                     const totalElement = $(".total",curLine);
@@ -203,10 +203,10 @@
                 } else {
                     selectedTable.append(`
                         <tr
-                            class="accordion-toggle selected-product" id="${lineData.Ma}" data-quantity="${1}" data-discount="${0.0}" data-code="${lineData.Ma}" data-total=${lineData.Gia}
+                            class="accordion-toggle selected-product" id="${lineData.MaSP}" data-quantity="${1}" data-discount="${0.0}" data-code="${lineData.MaSP}" data-total=${lineData.Gia}
                         >
-                            <td>${lineData.Ma}</td>
-                            <td>${lineData.Ten}</td>
+                            <td>${lineData.MaSP}</td>
+                            <td>${lineData.TenSP}</td>
                             <td class="quantity">${1}</td>
                             <td>
                                 <input class="discount" type="number" min="1" step="1" value="0.0" />
