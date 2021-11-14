@@ -1,3 +1,7 @@
+# Hồ Nhật Linh - 19127652
+# Nguyễn Quang Phú - 19127507
+# Nguyễn Ngọc Anh Khoa - 19127445
+# Lâm Hoàng Phúc - 19127512
 # CSDLNC-Projects
 Mô tả đồ án #1 môn học
 1. Chuẩn bị dữ liệu: Tạo csdl và phát sinh dữ liệu mẫu để test chỉ mục như sau:
