@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build-dev": "rm -rf dist && webpack --mode development",
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "del /s /q dist && webpack --mode production",
     "build-docs": "documentation build --github --format json --config ./docs/documentation.yml --output docs/components/api.json src/common/*/*.js",
     "dev": "nodemon -w src",
     "lint": "eslint --fix --cache --ignore-path .gitignore src",
