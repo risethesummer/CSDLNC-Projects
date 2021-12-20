@@ -22,7 +22,7 @@ module.exports = () => {
         }
         const invoices = await controller.list(req.db, page, page_size);
         res.render("listing", {
-            invoices: invoices[0],
+            invoices: invoices[0].length ? invoices[0] : [],
             page_size,
             page: page,
         });
