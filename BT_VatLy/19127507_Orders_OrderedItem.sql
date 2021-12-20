@@ -31,9 +31,12 @@ CREATE TABLE Ordered_Item (
 )
 GO
 
-ALTER TABLE dbo.Ordered_Item ADD CONSTRAINT FK_OrderedItem
+ALTER TABLE dbo.Ordered_Item ADD CONSTRAINT FK_Ordered_Item_Orders
 FOREIGN KEY (OrderNumber) REFERENCES dbo.Orders(OrderNumber)
-ALTER TABLE dbo.ORDERS ADD CONSTRAINT FK_CustomerOrder
+ALTER TABLE dbo.Ordered_Item ADD CONSTRAINT FK_Ordered_Item_Advertised_Item
+FOREIGN KEY (ItemNumber) REFERENCES dbo.Advertised_Item(ItemNumber)
+
+ALTER TABLE dbo.ORDERS ADD CONSTRAINT FK_Customer_Order
 FOREIGN KEY (CustomerIdentifer) REFERENCES Customer(CustomerIdentifier)
 ALTER TABLE dbo.ORDERS ADD CONSTRAINT FK_CardOrder
 FOREIGN KEY (CustomerCreditCardNumber) REFERENCES Credit_Card(CustomerCreditCardNumber)
