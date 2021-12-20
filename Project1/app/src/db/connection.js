@@ -1,11 +1,11 @@
 const sql = require("mssql");
 
 const config = {
-    user: "SA",
-    userName: "SA", // update me
-    password: "YOURPASS", // update me
+    user: "csdlnc",
+    userName: "csdlnc", // update me
+    password: "csdlnc", // update me
     database: "cua_hang",
-    server: "localhost",
+    server: "(LocalDB)\\MSSQLLocalDB",
     parseJSON: true,
     pool: {
         max: 10,
