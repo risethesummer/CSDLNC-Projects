@@ -21,8 +21,8 @@ CREATE TABLE Advertised_Item (
     ItemWeight FLOAT NOT NULL CHECK(ItemWeight > 0),
     ItemColor CHAR(10) NOT NULL, 
     ItemPrice DECIMAL(15,2) NOT NULL CONSTRAINT pos_ItemPrice CHECK(ItemPrice >= 0),
-    MinPriceSupplier CHAR(5),
-    MinSuppliedPrice DECIMAL(15,2),
+    MinPriceSupplier CHAR(5) NULL,
+    MinSuppliedPrice DECIMAL(15,2) NULL,
     TotalOrderedTime INT NOT NULL DEFAULT 0 CONSTRAINT pos_TotalOrderedTime CHECK (TotalOrderedTime >= 0),
 	FOREIGN KEY (MinPriceSupplier) REFERENCES Supplier(SupplierID)
 );
@@ -32,6 +32,7 @@ CREATE TABLE Restock_Item (
 	ItemNumber CHAR(6) NOT NULL,
 	SupplierID CHAR(5) NOT NULL,
 	PurchasePrice DECIMAL(15, 2) NOT NULL CHECK(PurchasePrice > 0),
+	PRIMARY KEY (ItemNumber,SupplierID),
 	FOREIGN KEY (ItemNumber) REFERENCES Advertised_Item(ItemNumber),
 	FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID)
 );
