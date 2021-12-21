@@ -1,3 +1,9 @@
+CREATE DATABASE ORDER_ENTRY
+GO
+
+USE ORDER_ENTRY
+GO
+
 CREATE TABLE Supplier (
     SupplierID CHAR(5) PRIMARY KEY,
     SupplierName NVARCHAR(20) NOT NULL,
@@ -6,28 +12,31 @@ CREATE TABLE Supplier (
     SupplierState NVARCHAR(20) NOT NULL,
     SupplierZipCode CHAR(6) NOT NULL
 );
+GO
 
 CREATE TABLE Advertised_Item (
     ItemNumber CHAR(6) PRIMARY KEY,
     ItemDescription NVARCHAR(30) NOT NULL,
     ItemDepartment CHAR(10) NOT NULL,
     ItemWeight FLOAT NOT NULL CHECK(ItemWeight > 0),
-    ItemColor Char(10) NOT NULL, 
+    ItemColor CHAR(10) NOT NULL, 
     ItemPrice DECIMAL(15,2) NOT NULL CONSTRAINT pos_ItemPrice CHECK(ItemPrice >= 0),
-    MinPriceSupplier CHAR(5),
-    MinSuppliedPrice DECIMAL(15,2),
+    MinPriceSupplier CHAR(5) NULL,
+    MinSuppliedPrice DECIMAL(15,2) NULL,
     TotalOrderedTime INT NOT NULL DEFAULT 0 CONSTRAINT pos_TotalOrderedTime CHECK (TotalOrderedTime >= 0),
 	FOREIGN KEY (MinPriceSupplier) REFERENCES Supplier(SupplierID)
 );
+GO
 
 CREATE TABLE Restock_Item (
 	ItemNumber CHAR(6) NOT NULL,
 	SupplierID CHAR(5) NOT NULL,
 	PurchasePrice DECIMAL(15, 2) NOT NULL CHECK(PurchasePrice > 0),
+	PRIMARY KEY (ItemNumber,SupplierID),
 	FOREIGN KEY (ItemNumber) REFERENCES Advertised_Item(ItemNumber),
 	FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID)
 );
-
+GO
 
 CREATE TABLE Customer
 (
@@ -39,8 +48,9 @@ CREATE TABLE Customer
 	CustomerState NVARCHAR(15) NOT NULL DEFAULT '',
 	CustomerZipCode CHAR(6) NOT NULL DEFAULT '',
 	CustomerCreditRating FLOAT NOT NULL DEFAULT 0,
-	CustomerTotalOrder INT NOT NULL DEFAULT 0 CHECK(CustomerTotalOrder > 0)
+	CustomerTotalOrder INT NOT NULL DEFAULT 0 CHECK(CustomerTotalOrder >= 0)
 );
+GO
 
 CREATE TABLE Credit_Card
 (
@@ -49,8 +59,9 @@ CREATE TABLE Credit_Card
 	CountOrder INT NOT NULL DEFAULT 1 CHECK (CountOrder >=0),
 	CustomerCreditCardName NVARCHAR(15) NOT NULL,
 	PreferredOption BIT DEFAULT 0,
-	FOREIGN KEY(CustomerIdentifer) REFERENCES Customer(CustomerIdentifier)
+	FOREIGN KEY (CustomerIdentifier) REFERENCES Customer(CustomerIdentifier)
 );
+GO
 
 CREATE TABLE Orders (
 	OrderNumber CHAR(8) PRIMARY KEY,
@@ -66,6 +77,7 @@ CREATE TABLE Orders (
 	FOREIGN KEY (CustomerIdentifer) REFERENCES Customer(CustomerIdentifier),
 	FOREIGN KEY (CustomerCreditCardNumber) REFERENCES Credit_Card(CustomerCreditCardNumber)
 );
+GO
 
 CREATE TABLE Ordered_Item (
 	ItemNumber CHAR(6) NOT NULL,
@@ -78,4 +90,4 @@ CREATE TABLE Ordered_Item (
 	FOREIGN KEY (OrderNumber) REFERENCES dbo.Orders(OrderNumber),
 	FOREIGN KEY (ItemNumber) REFERENCES dbo.Advertised_Item(ItemNumber)
 );
-
+GO
