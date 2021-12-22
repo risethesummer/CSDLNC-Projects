@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Backend.Database.Handler;
 using Backend.Database.Dtos;
 
@@ -20,7 +18,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CompactProductDto> GetProducts()
+        public IEnumerable<ProductDto> GetProducts()
         {
             foreach (var product in repository.GetProducts())
                 yield return product;

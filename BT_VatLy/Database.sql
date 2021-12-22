@@ -91,3 +91,14 @@ CREATE TABLE Ordered_Item (
 	FOREIGN KEY (ItemNumber) REFERENCES dbo.Advertised_Item(ItemNumber)
 );
 GO
+
+SELECT Customer.*, CustomerCreditCardNumber
+FROM Customer INNER JOIN Credit_Card
+ON Credit_Card.preferredOption = 1 
+AND Credit_Card.CustomerIdentifier = Customer.CustomerIdentifier
+WHERE Customer.CustomerIdentifier = 'KH00000'
+
+SELECT Customer.*, Credit_Card.*
+FROM Customer INNER JOIN Credit_Card
+ON Credit_Card.CustomerIdentifier = Customer.CustomerIdentifier
+WHERE Customer.CustomerIdentifier = 'KH000003'

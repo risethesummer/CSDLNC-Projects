@@ -8,13 +8,10 @@ using System.Data.SqlClient;
 
 namespace Backend.Database.Handler
 {
-    public class ProductDBManager : IProductRepository
+    public class ProductDBManager : DBManager, IProductRepository
     {
-        private readonly string connectionString;
-
-        public ProductDBManager(IConfiguration configuration)
+        public ProductDBManager(IConfiguration configuration) : base(configuration)
         {
-            connectionString = configuration.GetConnectionString("Default");
         }
 
         public ProductDto GetProduct(int productID)
@@ -23,7 +20,7 @@ namespace Backend.Database.Handler
             {
                 using var connection = new SqlConnection(connectionString);
                 connection.Open();
-                using var command  = new SqlCommand("SELECT sp.* FROM SAN_PHAM sp WHERE sp.MaSP = @ma_sp", connection);
+                using var command  = new SqlCommand("SELECT sp.MaSP, sp.TenSP, sp.MoTaSP, sp.LoaiSP, sp.GiaSP, sp.SoLuongTonKho FROM SAN_PHAM sp WHERE sp.MaSP = @ma_sp", connection);
                 command.Parameters.AddWithValue("@ma_sp", productID);
                 using var reader = command.ExecuteReader();
                 if (reader.Read())
@@ -32,10 +29,9 @@ namespace Backend.Database.Handler
                         ID = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         Description = reader.GetString(2),
-                        StockAmount = reader.GetInt32(3),
-                        TypeID = reader.GetInt32(4),
-                        TypeName = reader.GetString(5),
-                        Price = reader.GetDecimal(6)
+                        Type = reader.GetString(3),
+                        Price = reader.GetDecimal(4),
+                        StockAmount = reader.GetInt32(5)
                     };
                 return null;       
             }
@@ -45,22 +41,23 @@ namespace Backend.Database.Handler
             }
         }
 
-        public IEnumerable<CompactProductDto> GetProducts()
+        public IEnumerable<ProductDto> GetProducts()
         {
             try
             {
                 using var connection = new SqlConnection(connectionString);
                 connection.Open();
-                using var command  = new SqlCommand("SELECT sp.MaSP, sp.TenSP, sp.MoTaSP, sp.Gia, sp.SoLuongTonKho FROM SAN_PHAM sp", connection);
+                using var command  = new SqlCommand("SELECT sp.MaSP, sp.TenSP, sp.MoTaSP, sp.LoaiSP, sp.GiaSP, sp.SoLuongTonKho FROM SAN_PHAM sp", connection);
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
-                    yield return new CompactProductDto()
+                    yield return new ProductDto()
                     {
                         ID = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         Description = reader.GetString(2),
-                        Price = reader.GetDecimal(3),
-                        StockAmount = reader.GetInt32(4)
+                        Type = reader.GetString(3),
+                        Price = reader.GetDecimal(4),
+                        StockAmount = reader.GetInt32(5)
                     };      
             } finally {}
         }

@@ -5,7 +5,7 @@ namespace Backend.Database.Handler
 {
     public interface IProductRepository
     {
-        IEnumerable<CompactProductDto> GetProducts();
+        IEnumerable<ProductDto> GetProducts();
         ProductDto GetProduct(int productID);
     }
 }
