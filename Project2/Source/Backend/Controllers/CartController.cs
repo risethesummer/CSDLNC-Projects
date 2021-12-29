@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Backend.Database.Handler;
 using Backend.Database.Dtos;
+using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
+    [EnableCors("AllowAllPolicy")]
     [ApiController]
     [Route("cart")]
     public class CartController : ControllerBase

@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using Backend.Database.Dtos;
 using Backend.Database.Handler;
+using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
+    [EnableCors("AllowAllPolicy")]
     [ApiController]
     [Route("payment")]
     public class PaymentController : ControllerBase

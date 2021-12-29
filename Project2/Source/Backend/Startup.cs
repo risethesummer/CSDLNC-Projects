@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Backend.Database.Handler;
 
-
 namespace Backend
 {
     public class Startup
@@ -27,6 +26,16 @@ namespace Backend
             services.AddScoped<IUserRepository, UserDBManager>();
             services.AddScoped<IProductRepository, ProductDBManager>();
 
+            services.AddCors(o => o.AddPolicy("AllowAllPolicy", builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }));
+
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
@@ -43,6 +52,11 @@ namespace Backend
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Backend v1"));
             }
+
+            app.UseCors(builder => builder
+                                    .AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader());   
 
             app.UseHttpsRedirection();
 

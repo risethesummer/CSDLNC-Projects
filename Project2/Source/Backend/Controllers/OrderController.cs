@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using Backend.Database.Handler;
 using Backend.Database.Dtos;
+using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
+    [EnableCors("AllowAllPolicy")]
     [ApiController]
     [Route("order")]
     public class OrderController : ControllerBase
