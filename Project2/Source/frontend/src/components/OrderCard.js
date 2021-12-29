@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import { API_URL, userContext } from "../Contexts";
+import { API_URL } from "../Contexts";
 import ProductCard from "./ProductCardInCart";
 
 const OrderCard = ({
@@ -23,7 +23,7 @@ const OrderCard = ({
 		e.preventDefault();
 		setLoading(true);
 		axios
-			.post(API_URL + `/payment/${type}/${orderID}`, {
+			.post(API_URL + `/payment/${type}/${orderID}?total=${totalPrice}`, {
 				...formData,
 			})
 			.then((resp) => {
@@ -102,7 +102,7 @@ const OrderCard = ({
 										className="form-control"
 										value={type}
 										onChange={(e) => {
-											if (e.target.value == "cash")
+											if (e.target.value === "cash")
 												setFormData({});
 											else
 												setFormData({
@@ -118,7 +118,7 @@ const OrderCard = ({
 										<option>atm</option>
 									</select>
 								</div>
-								{type == "cash" ? (
+								{type === "cash" ? (
 									<></>
 								) : (
 									<>
@@ -193,10 +193,22 @@ const OrderCard = ({
 								>
 									Submit
 								</button>
-								<span className="m-2">Total: {totalPrice} &#8363;</span>
+								<span className="m-2">
+									Total: {totalPrice} &#8363;
+								</span>
 							</form>
 						) : (
-							<h6 className="m-2">Total: {totalPrice} &#8363;</h6>
+							<>
+								<h6 className="m-2">
+									Total: {totalPrice} &#8363;
+								</h6>
+								<h6 className="m-2">
+									Payment Type: {payment.paymentType}
+								</h6>
+								<h6 className="m-2">
+									Payment Date: {payment.date}
+								</h6>
+							</>
 						)}
 					</div>
 				</Modal.Body>
