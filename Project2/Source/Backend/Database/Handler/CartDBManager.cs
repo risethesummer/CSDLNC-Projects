@@ -36,7 +36,7 @@ namespace Backend.Database.Handler
             {
                 using var connection = new SqlConnection(connectionString);
                 connection.Open();
-                using var command  = new SqlCommand("SELECT sp.MaSP, sp.TenSP, sp.MoTaSP, sp.LoaiSP, sp.SoLuongTonKho, sp.GiaSP, gh.SoLuongGioHang FROM GIO_HANG gh JOIN SAN_PHAM sp ON gh.MaSP = sp.MaSP WHERE gh.MaKH = @ma_kh", connection);
+                using var command  = new SqlCommand("SELECT sp.MaSP, sp.TenSP, sp.MoTaSP, sp.LoaiSP, sp.SoLuongTonKho, sp.GiaSP, gh.SoLuongGioHang, sp.DuongDanHinhAnh FROM GIO_HANG gh JOIN SAN_PHAM sp ON gh.MaSP = sp.MaSP WHERE gh.MaKH = @ma_kh", connection);
                 command.Parameters.AddWithValue("@ma_kh", userID);
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -48,7 +48,8 @@ namespace Backend.Database.Handler
                         Type = reader.GetString(3),
                         StockAmount = reader.GetInt32(4),
                         Price = reader.GetDecimal(5),
-                        Amount = (ushort)reader.GetInt32(6)
+                        Amount = (ushort)reader.GetInt32(6),
+                        Image = ImageHandler.GetProductImage(reader.GetString(7))
                     };
             } finally {}
         }

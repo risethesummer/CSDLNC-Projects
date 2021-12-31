@@ -9,6 +9,11 @@ BEGIN TRY
 	SET @so_luong_hien_tai = (SELECT SoLuongGioHang
 								FROM GIO_HANG gh
 								WHERE gh.MaKH = @ma_kh AND gh.MaSP = @ma_sp);
+
+	UPDATE SAN_PHAM
+	SET SoLuongTonKho -= @so_luong_them
+	WHERE MaSP = @ma_sp;
+
 	IF @so_luong_hien_tai IS NULL
 		BEGIN
 			INSERT INTO GIO_HANG(MaKH, MaSP, SoLuongGioHang)
@@ -36,6 +41,7 @@ BEGIN CATCH
 	ROLLBACK TRANSACTION;
 END CATCH
 GO
+
 
 CREATE PROC tao_don_hang @ma_kh INT
 AS 

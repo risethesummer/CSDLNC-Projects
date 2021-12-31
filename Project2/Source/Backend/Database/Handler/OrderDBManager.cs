@@ -32,7 +32,7 @@ namespace Backend.Database.Handler
         {
             using var connection = new SqlConnection(connectionString);
             connection.Open();
-            using var getDetailedCommand = new SqlCommand("SELECT sp.MaSP, sp.TenSP, sp.MoTaSP, sp.LoaiSP, sp.SoLuongTonKho, ctdh.DonGiaDH, ctdh.GiaGiamDH, ctdh.SoLuongDH FROM CHI_TIET_DON_HANG ctdh JOIN SAN_PHAM sp ON ctdh.MaSP = sp.MaSP WHERE ctdh.MaDH = @ma_dh", connection);
+            using var getDetailedCommand = new SqlCommand("SELECT sp.MaSP, sp.TenSP, sp.MoTaSP, sp.LoaiSP, sp.SoLuongTonKho, ctdh.DonGiaDH, ctdh.GiaGiamDH, ctdh.SoLuongDH, sp.DuongDanHinhAnh FROM CHI_TIET_DON_HANG ctdh JOIN SAN_PHAM sp ON ctdh.MaSP = sp.MaSP WHERE ctdh.MaDH = @ma_dh", connection);
             getDetailedCommand.Parameters.AddWithValue("@ma_dh", orderID);
             using var productReader = getDetailedCommand.ExecuteReader();
             while (productReader.Read())
@@ -46,7 +46,8 @@ namespace Backend.Database.Handler
                     StockAmount = productReader.GetInt32(4),
                     Price = productReader.GetDecimal(5),
                     Discount = productReader.GetDecimal(6),
-                    Amount = (ushort)productReader.GetInt32(7)
+                    Amount = (ushort)productReader.GetInt32(7),
+                    Image = ImageHandler.GetProductImage(productReader.GetString(8))
                 };
             }
         }
