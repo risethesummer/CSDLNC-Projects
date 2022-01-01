@@ -1,4 +1,5 @@
-﻿--CREATE DATABASE shop_db;
+﻿CREATE DATABASE shop_db;
+go
 USE shop_db;
 
 --Bảng tài khoản
