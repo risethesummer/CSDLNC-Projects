@@ -49,7 +49,11 @@ const ListingProductsInCart = ({ setLoading }) => {
 					}}
 				>
 					{data.map((value, idx) => (
-						<ProductCard {...value} key={idx} />
+						<ProductCard
+							{...value}
+							key={idx}
+							setLoading={setLoading}
+						/>
 					))}
 				</div>
 				<div className="col-md-10">
