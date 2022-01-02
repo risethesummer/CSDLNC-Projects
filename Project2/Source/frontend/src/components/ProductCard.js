@@ -9,32 +9,34 @@ const ProductCard = ({
 	stockAmount,
 	price,
 	setLoading,
+	image,
 	...props
 }) => {
 	const user = useContext(userContext);
 	const addToCart = (e) => {
 		e.preventDefault();
 		setLoading(true);
-		axios.put(
-			API_URL + `/cart/${user.id}`, {
-				"productID": id,
-				"amount": 1
-			}
-		).then(resp => {
-			setLoading(false);
-			alert("Added to cart !!")
-		}).catch(err => {
-			setLoading(false);
-			alert("Errors")
-		})
-	}
+		axios
+			.put(API_URL + `/cart/${user.id}`, {
+				productID: id,
+				amount: 1,
+			})
+			.then((resp) => {
+				setLoading(false);
+				alert("Added to cart !!");
+			})
+			.catch((err) => {
+				setLoading(false);
+				alert("Errors");
+			});
+	};
 
 	return (
 		<div id={id} className="row p-2 bg-white border rounded" {...props}>
 			<div className="col-md-3 mt-1">
 				<img
 					className="img-fluid img-responsive rounded product-image"
-					src="https://loremflickr.com/320/240?random=1"
+					src={`data:${image.contentType};base64,${image.content}`}
 				/>
 			</div>
 			<div className="col-md-6 mt-1">
