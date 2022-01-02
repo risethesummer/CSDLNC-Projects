@@ -95,9 +95,9 @@ CREATE PROC thanh_toan_don_hang_atm @ma_dh INT, @so_tk CHAR(10), @ten_tk NVARCHA
 AS
 BEGIN TRANSACTION
 BEGIN TRY
-	DECLARE @ma_kh INT;
-	SET @ma_kh = (SELECT TOP 1 MaKH FROM DON_HANG dh WHERE dh.MaDH = @ma_dh AND dh.TrangThaiDH = N'Đang xử lý');
-	
+	DECLARE @ma_kh INT, @tong_tien DECIMAL;
+	SET @ma_kh = (SELECT TOP 1 dh.MaKH FROM DON_HANG dh WHERE dh.MaDH = @ma_dh AND dh.TrangThaiDH = N'Đang xử lý');
+	SET @tong_tien = (SELECT TOP 1 dh.TongGiaDH FROM DON_HANG dh WHERE dh.MaDH = @ma_dh AND dh.TrangThaiDH = N'Đang xử lý');
 	IF @ma_kh IS NULL
 		BEGIN
 			ROLLBACK TRANSACTION;
@@ -114,6 +114,9 @@ BEGIN TRY
 	
 	INSERT INTO THANH_TOAN_ATM(MaDH, STK)
 	VALUES (@ma_dh, @so_tk);
+
+	UPDATE KHACH_HANG
+	SET SoTienDaDung += @tong_tien, DiemTichLuy += (@tong_tien / 10);
 
 	UPDATE DON_HANG
 	SET TrangThaiDH = N'Đã thanh toán'
