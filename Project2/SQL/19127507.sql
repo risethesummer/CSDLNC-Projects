@@ -1,4 +1,5 @@
-﻿USE shop_db
+Cái file này không cần chạy
+USE shop_db
 go
 -- Xem danh sách sản phẩm còn hàng thuộc loại 'Hoa vieng' 
 SELECT *
